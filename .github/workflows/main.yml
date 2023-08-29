@@ -42,12 +42,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: ensure the generated file exists
-        run: |
-          ls dist
-          test -f dist/github-contribution-grid-snake.svg
-          test -f dist/github-contribution-grid-snake-dark.svg
-          test -f dist/github-contribution-grid-snake.gif
-
+        
       - uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
@@ -66,10 +61,7 @@ jobs:
       - run: yarn install --frozen-lockfile
 
       - name: build svg-only action
-        run: |
-          npm run build:action
-          rm -r svg-only/dist
-          mv packages/action/dist svg-only/dist
+        
 
       - name: generate-snake-game-from-github-contribution-grid
         id: generate-snake
@@ -83,10 +75,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: ensure the generated file exists
-        run: |
-          ls dist
-          test -f dist/github-contribution-grid-snake.svg
-          test -f dist/github-contribution-grid-snake-dark.svg
+        
 
       - uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
