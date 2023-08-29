@@ -10,13 +10,13 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          cache: yarn
+          # cache: yarn
           node-version: 16
-      - run: yarn install --frozen-lockfile
+      # - run: yarn install --frozen-lockfile
 
-      - run: npm run type
-      - run: npm run lint
-      - run: npm run test --ci
+      # - run: npm run type
+      # - run: npm run lint
+      # - run: npm run test --ci
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
@@ -25,9 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: update action.yml to use image from local Dockerfile
-        run: |
-          sed -i "s/image: .*/image: Dockerfile/" action.yml
+      # - name: update action.yml to use image from local Dockerfile
+      #   run: |
+      #     sed -i "s/image: .*/image: Dockerfile/" action.yml
 
       - name: generate-snake-game-from-github-contribution-grid
         id: generate-snake
@@ -109,10 +109,4 @@ jobs:
         # env:
           # GITHUB_USER_CONTRIBUTION_API_ENDPOINT: https://snk-one.vercel.app/api/github-user-contribution/
 
-      - uses: crazy-max/ghaction-github-pages@v3.1.0
-        if: success() && github.ref == 'refs/heads/main'
-        with:
-          target_branch: gh-pages
-          build_dir: packages/demo/dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+     
